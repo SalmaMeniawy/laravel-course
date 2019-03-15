@@ -1,9 +1,9 @@
 
-        @extends('layout.app')
+        @extends('layouts.app')
 
         @section('content')
         <br>
-        <a href="{route('posts.store')}}" class= "btn btn-success btn-block">Create Post</a>
+        <a href="{{route('posts.create')}}" class= "btn btn-success btn-block">Create Post</a>
         <br>
         <table class="table">
         <thead>
@@ -21,17 +21,17 @@
             <tr>
             <th scope="row">{{$post->id}}</th>
             <td>{{$post->title}}</td>
-            <td>{{$post->name}}</td>
-            <td>{{$post->created_at}}</td>
+            <td>{{isset($post->user)?$post->user->name:'Not Found'}}</td>
+            <td>{{$post->created_at->format('d/m/Y')}}</td>
             <td>
                 <a href="#" class="btn btn-info">View</a>
-                <a href="#" class="btn btn-warning">Edit</a>
-                <a href="#" class="btn btn-Danger">Delete</a>
-
+                <a href="#" class="btn btn-warning">Edit</a>             
+                <a href="" class="btn btn-danger">Delete</a>
+                <!-- <a href="{{}}">Delete</a> -->
             </td>
 
             </tr>
-            <tr>
+           
             @endforeach
         </tbody>
         </table>

@@ -2,13 +2,15 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+   
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +38,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    //////////////////////////////////////////////////////////////////////////new/////////////
+    // public function post()
+    // {
+    //     return $this->belongsTo('App\Podt');
+    // }
+    /////////////////////////////////////
+    // public function posts()
+    //     {
+    //     return $this->hasOne('App\Post');
+    //     }
+    /////////////////////////////////////////////////
+    
+    // public function post()
+    // {
+    // return $this->hasOne('App\Post','foreign_key');
+    // //,'foreign_key'
+    // }
 }

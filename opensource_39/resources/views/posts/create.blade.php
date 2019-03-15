@@ -1,26 +1,40 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
-<br>
-<form action="{{route('posts.store')}} " method="POST">
-    @csrf
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Title </label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your post Title">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Description</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Your Description"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Post Creater</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your Name">
-  </div>
-  <div>
-  <button type="submit" class="btn btn-success">Submit</button>
-  </div>
-</form>
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+<a href="{{route('posts.index')}}" class="btn btn-danger">Back</a>
 
+   <form action="{{route('posts.store')}}" method="POST">
+       @csrf
+       <div class="form-group">
+           <label for="exampleInputEmail1">Title</label>
+           <input name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
+       </div>
+       <div class="form-group">
+           <label for="exampleInputPassword1">Description</label>
+           <textarea name="description" class="form-control"></textarea>
+       </div>
 
+        <div class="form-group">
+           <label for="exampleInputPassword1">Post Creator</label>
+           <select class="form-control" name="user_id">
+               @foreach($users as $user)
+                   <option value="{{$user->id}}">{{$user->name}}</option>
+               @endforeach
+           </select>
+       </div>
+
+   <button type="submit" class="btn btn-primary">Submit</button>
+   </form>
 
 @endsection
+
+
