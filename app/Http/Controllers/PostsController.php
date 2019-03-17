@@ -60,7 +60,7 @@ class PostsController extends Controller
     
         $post->update([
             'title'=>$request->title,
-            'descriptions'=>$request->description,
+            'description'=>$request->description,
             ]);
 
         return redirect()->route('posts.index');

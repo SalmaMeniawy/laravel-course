@@ -31,7 +31,7 @@ Route::get('/', function () {
 
         Route::get('/posts/{post}/show','PostsController@show')->name('posts.show');
 
-        Route::patch('/posts/{post}/edit','PostsController@update')->name('posts.update');;
+        Route::patch('/posts/{post}','PostsController@update')->name('posts.update');;
         
         Route::delete('photos/{photo}','PostsController@destroy')->name('posts.destroy');
 

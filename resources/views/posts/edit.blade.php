@@ -12,8 +12,10 @@
     @endif
 <a href="{{route('posts.index')}}" class="btn btn-danger">Back</a>
 
-   <form action="{{route('posts.update')}}" method="POST">
+   <form action="{{route('posts.update',$post->id)}}" method="POST">
        @csrf
+       @method('patch')
+       
        <div class="form-group">
            <label for="exampleInputEmail1">Title</label>
            <input name="title" value="{{$post->title}}" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
