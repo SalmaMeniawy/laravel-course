@@ -40,29 +40,12 @@ class PostsController extends Controller
     
     public function show(Post $post)
     {
-       
-        $post = Post::findOrFail($post);
-        
-       // $user = User::findOrFail($post->user_id);
-        //$myPost = json_decode(json_encode($post), true);// --> to convert it to array
-        // var_dump($post);
-
-        return view('posts.show',[
-            'post'=>$post,]
-    );
+        $user = User::all();
+        return view('posts.show',['post'=>$post] );
             
-        ///old ONE///
-        // return view('posts.show',[
-        //     'post'=>$post,
-        // ]);
+       
     }
-    // public function edit(Post $post)
-    // {
-        
-    //     return view ('posts.edit',[
-    //         'post'=> $post,
-    //     ]);
-    // }
+    
     public function edit(Post $post)
     {
         $users= User::all();
