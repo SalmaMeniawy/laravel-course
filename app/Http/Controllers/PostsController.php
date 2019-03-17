@@ -57,7 +57,16 @@ class PostsController extends Controller
     }
     public function update( Request $request,Post $post)//UpdatePostRequest
     {
-    
+        $request->validate([
+            'title' => 'required|unique:posts|min:3',
+            'description'=> 'required|min:10',
+        ],[
+            'title.required'=> 'the Title is Required',
+            'title.unique'=>'The Title Exist Before',
+            'title.min'=>'Minimum length 3 Character',
+            'description.required'=>'The Description is Required',
+            'description.min'=> 'the Minimum Length for Description 10 character',
+        ]);
         $post->update([
             'title'=>$request->title,
             'description'=>$request->description,
@@ -66,14 +75,7 @@ class PostsController extends Controller
         return redirect()->route('posts.index');
     }
 
-    // public function update(Request $request ,Post $post)
-    // {
-    //    // return view('posts.update',['post'=> $post]);
-    // //    $post->'title' = $request->'title'
-    // //    $post->'description' = $post->'description';
-    // dd($post);
-
-    // }
+    
     public function destroy(Post $post)
     {
         $post = Post::find($post);
