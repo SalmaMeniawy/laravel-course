@@ -76,13 +76,14 @@ class PostsController extends Controller
     }
 
     
-    public function destroy(Post $post)
+    public function destroy($post)
     {
         $post = Post::find($post);
         $post->delete();
-        return view('posts.destroy',[
-            'flash_message' => 'Deleted',
-            'flash_message_important' => false,
-        ]);
+        return redirect ('/posts')->with('success','post has been deleted successfully ');
+        // return view('posts.destroy',[
+        //     'flash_message' => 'Deleted',
+        //     'flash_message_important' => false,
+        // ]);
     }
 }

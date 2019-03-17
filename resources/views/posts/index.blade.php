@@ -25,9 +25,14 @@
             <td>{{isset($post->user)?$post->user->name:'Not Found'}}</td>
             <td>{{$post->created_at->format('d/m/Y')}}</td>
             <td>
-                <a href="{{route('posts.show',$post->id)}}" class="btn btn-info">View</a>
-                <a href="{{route('posts.edit',$post->id)}}" class="btn btn-warning">Edit</a>             
-                <a href="{{route('posts.destroy',$post->id)}}" class="btn btn-danger">Delete</a>
+                       
+                <form  action="{{ route('posts.destroy', $post->id)}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <a href="{{route('posts.show',$post->id)}}" class="btn btn-info">View</a>
+                <a href="{{route('posts.edit',$post->id)}}"  class="btn btn-warning">Edit</a>      
+                  <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
                
             </td>
            
